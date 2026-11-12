@@ -1,4 +1,4 @@
-package devops.lab;
+package com.example;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,10 +16,10 @@ public class AppTest {
     @Test
     void testSuccessfulDepositAndWithdrawal() {
         account.deposit(50.0);
-        assertEquals(150.0, account.getBalance(), 0.001);
-
         account.withdraw(40.0);
-        assertEquals(110.0, account.getBalance(), 0.001);
+        
+        // INTENTIONAL FAILURE: Expecting 999.0 instead of the actual 110.0
+        assertEquals(999.0, account.getBalance(), 0.001); 
     }
 
     @Test
