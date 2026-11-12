@@ -24,9 +24,9 @@ public class App {
         if (amount <= 0) {
             throw new IllegalArgumentException("Withdrawal amount must be positive");
         }
-        if (amount > balance) {
-            throw new IllegalArgumentException("Insufficient balance");
-        }
+        
+        // BUG INTRODUCED: The check `if (amount > balance)` was removed, 
+        // allowing the account balance to drop below zero (negative balance).
         balance -= amount;
     }
 
@@ -37,8 +37,7 @@ public class App {
 
     public static void main(String[] args) {
         App account = new App(100.0);
-        account.deposit(50.0);
-        account.withdraw(30.0);
+        account.withdraw(150.0); // Results in -$50.0
         System.out.println("Current Balance: $" + account.getBalance());
     }
 }
